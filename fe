@@ -38,6 +38,4 @@ while wait() do
 end
 wait(0.5)
 Char.Humanoid:ChangeState(15)
-end
-end
-end
+
