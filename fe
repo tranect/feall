@@ -1,0 +1,43 @@
+local LP = game.Players.LocalPlayer
+local Char,Pack = LP.Character,LP.Backpack
+local HRP,Hum = Char.HumanoidRootPart,Char.Humanoid
+local LS = LP.PlayerGui:FindFirstChild("LocalScript")
+local plrs = game:GetService("Players")
+local OHRP = plrs:GetChildren()
+local FETO = plrs:FindFirstChildWhichIsA("Part")
+if LS then LS:Destroy() end
+
+for i = 1, #OHRP do
+print(i, OHRP[i].Name)
+end
+
+LP.CharacterAdded:Connect(function(fe)
+fe:WaitForChild("Right Leg"):Destroy()
+fe:WaitForChild("Humanoid")
+fe:WaitForChild("HumanoidRootPart") wait(0.01)
+local CL = fe:WaitForChild("Humanoid"):Clone()
+fe:WaitForChild("Humanoid"):Destroy()
+CL.Parent = fe
+fe.Humanoid:ChangeState(15)
+end)
+
+game:GetService("RunService").RenderStepped:Connect(function()
+for p, GetPlayer in pairs(plrs:GetChildren())do
+if GetPlayer.Name ~= plrs.LocalPlayer.Name then
+    if GetPlayer.Character:FindFirstChild("Humanoid") then
+wait(0.2)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = GetPlayer.Character.Torso.CFrame 
+end
+end
+end
+end)
+while wait() do
+    for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            v.Parent = game.Players.LocalPlayer.Character
+        end
+end
+wait(0.5)
+Char.Humanoid:ChangeState(15)
+end
+end
+end
